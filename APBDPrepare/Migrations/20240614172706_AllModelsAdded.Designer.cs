@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APBDPrepare.Migrations
 {
     [DbContext(typeof(BoatDbContext))]
-    [Migration("20240614165421_BoatStandardAdded")]
-    partial class BoatStandardAdded
+    [Migration("20240614172706_AllModelsAdded")]
+    partial class AllModelsAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -219,7 +219,7 @@ namespace APBDPrepare.Migrations
                     b.HasOne("APBDPrepare.Models.BoatStandard", "BoatStandard")
                         .WithMany("Reservations")
                         .HasForeignKey("IdBoatStandard")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("APBDPrepare.Models.Client", "Client")

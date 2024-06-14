@@ -1,5 +1,6 @@
 using APBDPrepare.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace APBDPrepare.Context;
 
@@ -32,7 +33,7 @@ public class BoatDbContext: DbContext
             {
                 opt.HasKey(e => e.IdBoatStandard);
                 opt.Property(e => e.Name).HasMaxLength(100).IsRequired();
-                opt.HasMany(e => e.Reservations).WithOne(e => e.BoatStandard).HasForeignKey(e => e.IdBoatStandard);
+                opt.HasMany(e => e.Reservations).WithOne(e => e.BoatStandard).HasForeignKey(e => e.IdBoatStandard).OnDelete(DeleteBehavior.NoAction);
             }
             );
         modelBuilder.Entity<Client>(opt =>
@@ -53,6 +54,8 @@ public class BoatDbContext: DbContext
         modelBuilder.Entity<Reservation>(opt =>
         {
             opt.HasKey(e => e.IdReservation);
+            opt.Property(e => e.IdReservation).ValueGeneratedOnAdd().HasAnnotation("SqlServer:ValueGenerationStrategy",
+                SqlServerValueGenerationStrategy.IdentityColumn);
             opt.Property(e => e.CancelReason).HasMaxLength(200);
             opt.HasOne(e => e.Client).WithMany(e => e.Reservations).HasForeignKey(e => e.IdClient);
             opt.HasMany(e => e.Sailboats).WithMany(e => e.Reservations);

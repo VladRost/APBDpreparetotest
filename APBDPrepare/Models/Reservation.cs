@@ -14,5 +14,5 @@ public class Reservation
     public string CancelReason { get; set; }
     public BoatStandard BoatStandard { get; set; }
     public Client Client { get; set; }
-    public ICollection<Sailboat> Sailboats { get; set; }
+    public ICollection<Sailboat> Sailboats { get; set; } = new List<Sailboat>();
 }

@@ -216,7 +216,7 @@ namespace APBDPrepare.Migrations
                     b.HasOne("APBDPrepare.Models.BoatStandard", "BoatStandard")
                         .WithMany("Reservations")
                         .HasForeignKey("IdBoatStandard")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("APBDPrepare.Models.Client", "Client")
