@@ -67,6 +67,7 @@ public class BoatDbContext: DbContext
             opt.Property(e => e.Description).HasMaxLength(100).IsRequired();
             opt.HasOne(e => e.BoatStandard).WithMany(e => e.Sailboats).HasForeignKey(e => e.IdBoatStandard);
         });
+        base.OnModelCreating(modelBuilder);
 
     }
 }
